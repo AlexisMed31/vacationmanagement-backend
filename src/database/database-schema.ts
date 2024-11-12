@@ -1,6 +1,9 @@
+import { calendar } from './tables/database-table-calendar';
+import { employee } from './tables/database-table-employee';
+import { vacationdays } from './tables/database-table-vacationdays';
+
 export const databaseSchema = {
-  public: {
-    users: 'users',
-    forms: 'forms',
-  },
+  employee,
+  vacationdays,
+  calendar,
 };
