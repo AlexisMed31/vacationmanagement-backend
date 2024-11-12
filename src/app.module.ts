@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsermanagementModule } from './usermanagement/usermanagement.module';
-import { ExammanagementModule } from './exammanagement/exammanagement.module';
-import { FormsModule } from './forms/forms.module';
-import { PaymentModule } from './payment/payment.module';
 import * as Joi from 'joi';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
+import { EmployeeModule } from './employee/employee.module';
+import { DaysModule } from './days/days.module';
+import { CalendarModule } from './calendar/calendar.module';
 
 @Module({
   imports: [
@@ -31,10 +30,9 @@ import { DatabaseModule } from './database/database.module';
         POSTGRES_DB: Joi.string().required(),
       }),
     }),
-    UsermanagementModule,
-    ExammanagementModule,
-    FormsModule,
-    PaymentModule,
+    EmployeeModule,
+    DaysModule,
+    CalendarModule,
   ],
   controllers: [AppController],
   providers: [AppService],
