@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { DrizzleService } from '../database/drizzle.service';
 import { databaseSchema } from '../database/database-schema';
-import { vacationdays } from 'src/database/tables/database-table-vacationdays';
 import { eq } from 'drizzle-orm';
 import { CreateVacationDayDto } from './dto/create-vacationday.dto';
 import { UpdateVacationDayDto } from './dto/update-vacationday.dto';
