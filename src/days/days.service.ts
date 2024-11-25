@@ -5,6 +5,7 @@ import { eq } from 'drizzle-orm';
 import { CreateVacationDayDto } from './dto/create-vacationday.dto';
 import { UpdateVacationDayDto } from './dto/update-vacationday.dto';
 
+
 @Injectable()
 export class DaysService {
     constructor(private readonly drizzleService: DrizzleService) {}
@@ -27,7 +28,10 @@ export class DaysService {
     async create(vacationdays: CreateVacationDayDto){
         const CreateVacationDay = await this.drizzleService.db
             .insert(databaseSchema.vacationdays)
-            .values(vacationdays)
+            .values({
+                ...vacationdays,
+                lastupdated: new Date(),
+            }as any)
             .returning();
 
         return CreateVacationDay.pop();

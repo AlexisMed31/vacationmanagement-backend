@@ -19,7 +19,6 @@ import { CalendarModule } from './calendar/calendar.module';
         user: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        ssl: configService.get('POSTGRES_SSL') === 'true' ? { rejectUnauthorized: true } : undefined,
       }),
     }),
     ConfigModule.forRoot({
@@ -29,7 +28,6 @@ import { CalendarModule } from './calendar/calendar.module';
         POSTGRES_USER: Joi.string().required(),
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
-        POSTGRES_SSL: Joi.string().valid('true', 'false').default('false'),
       }),
     }),
     EmployeeModule,
