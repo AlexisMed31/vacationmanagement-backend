@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { databaseSchema } from 'src/database/database-schema';
-import { DrizzleService } from 'src/database/drizzle.service';
+import { DrizzleService } from '../database/drizzle.service';
 import { eq } from 'drizzle-orm';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { LoginEmployeeDto } from './dto/login-employee.dto';
 
 @Injectable()
 export class EmployeeService {
@@ -34,6 +35,30 @@ export class EmployeeService {
       return employee;
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async verifyUserCredentials(employeeData: LoginEmployeeDto): Promise<boolean> {
+    try {
+      const employee = await this.drizzleService.db
+        .select()
+        .from(databaseSchema.employee)
+        .where(eq(databaseSchema.employee.username, employeeData.username))
+        .limit(1); 
+
+      if (employee.length === 0) {
+        return false;
+      }
+
+      const storedPassword = employee[0].password; 
+      if (storedPassword === employeeData.password) {
+        return true; 
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false; 
     }
   }
 

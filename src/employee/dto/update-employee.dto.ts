@@ -4,4 +4,6 @@ export class UpdateEmployeeDto {
   enddate?: string;
   isactive?: boolean;
   daysid?: number;
+  username?: string;
+  password?: string;
 }

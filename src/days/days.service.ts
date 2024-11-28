@@ -23,6 +23,8 @@ export class DaysService {
         if(!vacationDays){
             throw new NotFoundException();
         }
+
+        return vacationDays;
     }
 
     async create(vacationdays: CreateVacationDayDto){

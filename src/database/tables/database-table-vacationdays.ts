@@ -5,5 +5,5 @@ export const vacationdays = pgTable('vacationdays', {
   totaldays: integer('totaldays').notNull(),
   daystaken: integer('daystaken'),
   daysremaining: integer('daysremaining'),
-  lastupdated: timestamp('lastupdated').defaultNow(),
+  lastupdated: timestamp('lastupdated').defaultNow().notNull(),
 });

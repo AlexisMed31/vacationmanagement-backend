@@ -18,6 +18,8 @@ export const employee = pgTable(
     enddate: date('enddate'),
     isactive: boolean('isactive'),
     daysid: integer('daysid').references(() => vacationdays.daysid),
+    username: varchar('username', { length: 50 }),
+    password: varchar('password', { length: 100 }),
   },
   (table) => ({
     fk: foreignKey({

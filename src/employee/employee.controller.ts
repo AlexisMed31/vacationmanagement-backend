@@ -11,6 +11,7 @@ import {
 import { EmployeeService } from './employee.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { LoginEmployeeDto } from './dto/login-employee.dto';
 
 @Controller('employee')
 export class EmployeeController {
@@ -42,5 +43,10 @@ export class EmployeeController {
   @Delete(':id')
   async deleteEmployee(@Param('id', ParseIntPipe) id: number) {
     return this.employeeService.deleteEmployee(id);
+  }
+
+  @Post('login')
+  async loginEmployee(@Body() employeeData: LoginEmployeeDto) {
+    return this.employeeService.verifyUserCredentials(employeeData);
   }
 }

@@ -4,4 +4,6 @@ export class CreateEmployeeDto {
   enddate: string;
   isactive: boolean;
   daysid: number;
+  username: string;
+  password: string;
 }
