@@ -32,33 +32,33 @@ export class EmployeeService {
       if (!employee) {
         throw new Error('Employee not found');
       }
-      return employee;
+      return employee.pop();
     } catch (error) {
       console.log(error);
     }
   }
 
-  async verifyUserCredentials(employeeData: LoginEmployeeDto): Promise<boolean> {
+  async verifyUserCredentials(employeeData: LoginEmployeeDto): Promise<any> {
     try {
       const employee = await this.drizzleService.db
         .select()
         .from(databaseSchema.employee)
-        .where(eq(databaseSchema.employee.username, employeeData.username))
-        .limit(1); 
+        .where(eq(databaseSchema.employee.username, employeeData.username));
 
       if (employee.length === 0) {
         return false;
       }
+      const employeePop = employee.pop();
 
-      const storedPassword = employee[0].password; 
+      const storedPassword = employeePop.password;
       if (storedPassword === employeeData.password) {
-        return true; 
+        return employeePop;
       } else {
         return false;
       }
     } catch (error) {
       console.log(error);
-      return false; 
+      return false;
     }
   }
 
